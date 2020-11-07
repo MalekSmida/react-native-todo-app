@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#0A66C2",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: Platform.OS === "android" ? 25 : 0,
   },
 });
 
