@@ -4,22 +4,22 @@ import { StyleSheet, Text, View, Button, Animated } from "react-native";
 const styles = StyleSheet.create({
   container__text: {
     fontWeight: "bold",
-    color: "#0A66C2",
+    color: "#fff",
     fontSize: 20,
     marginBottom: 20,
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#0A66C2",
     alignItems: "center",
     justifyContent: "center",
   },
 });
 
 /**
- * Main component rendered when click open up button in welcome interface
+ * Welcome component rendered when we open the application
  */
-function Main({ navigation }) {
+function Welcome({ navigation }) {
   // initialize animation to 0 => opacity
   const fadeAnimText = useRef(new Animated.Value(0)).current;
   const fadeAnimButton = useRef(new Animated.Value(0)).current;
@@ -47,25 +47,26 @@ function Main({ navigation }) {
           opacity: fadeAnimText,
         }}
       >
-        <Text style={styles.container__text}>What is the meaning of life!</Text>
+        <Text style={styles.container__text}>Welcome to the world</Text>
       </Animated.View>
       <Animated.View
         style={{
           opacity: fadeAnimButton,
-          width: 180,
+          width: 100,
           marginLeft: "auto",
           marginRight: "auto",
         }}
       >
         <Button
           onPress={() => {
-            navigation.navigate("Welcome");
+            // alert("First move toward Wisdom");
+            navigation.navigate("Main" /* , { name: 'Jane' } */);
           }}
-          title="Back to the future"
+          title="Open up"
         />
       </Animated.View>
     </View>
   );
 }
 
-export default Main;
+export default Welcome;
