@@ -10,16 +10,22 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * Main component rendered when we open the application
+ */
 function Main() {
+  // initialize animation to 0 => opacity
   const fadeAnimText = useRef(new Animated.Value(0)).current;
   const fadeAnimButton = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    // run text animation when render component
     Animated.timing(fadeAnimText, {
       toValue: 1,
       duration: 1000,
     }).start();
 
+    // run button animation after 1s of rendering (when text animation is finished)
     setTimeout(() => {
       Animated.timing(fadeAnimButton, {
         toValue: 1,
@@ -50,7 +56,6 @@ function Main() {
             alert("First move toward Wisdom");
           }}
           title="Open up"
-          // color="#0A66C2"
         />
       </Animated.View>
     </View>
