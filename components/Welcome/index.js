@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#0A66C2",
+    backgroundColor: "#0A66C2", //000
     alignItems: "center",
     justifyContent: "center",
-    marginTop: Platform.OS === "android" ? 25 : 0,
+    // marginTop: Platform.OS === "android" ? 25 : 0,
   },
 });
 
@@ -39,6 +39,11 @@ function Welcome({ navigation }) {
         duration: 1000,
       }).start();
     }, 1000);
+
+    // redirect to main view
+    setTimeout(() => {
+      navigation.navigate("Main");
+    }, 3000);
   }, [fadeAnimText, fadeAnimButton]);
 
   return (
@@ -48,23 +53,14 @@ function Welcome({ navigation }) {
           opacity: fadeAnimText,
         }}
       >
-        <Text style={styles.container__text}>Welcome to the world</Text>
+        <Text style={styles.container__text}>The Universe</Text>
       </Animated.View>
       <Animated.View
         style={{
           opacity: fadeAnimButton,
-          width: 100,
-          marginLeft: "auto",
-          marginRight: "auto",
         }}
       >
-        <Button
-          onPress={() => {
-            // alert("First move toward Wisdom");
-            navigation.navigate("Main" /* , { name: 'Jane' } */);
-          }}
-          title="Open up"
-        />
+        <Text style={styles.container__text}>is calling you!</Text>
       </Animated.View>
     </View>
   );
