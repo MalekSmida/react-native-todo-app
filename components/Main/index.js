@@ -1,9 +1,17 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 // local files
 import colors from "../../utilities/Colors";
+import todoList from "../../utilities/data";
+import TodoList from "../TodoList";
 
 /**
  * Main component of TODO-List
@@ -11,15 +19,24 @@ import colors from "../../utilities/Colors";
 function Main({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.container__text}>
+      <Text style={styles.text}>
         Todo
-        <Text style={styles.container__blue}>Lists</Text>
+        <Text style={styles.blue}>Lists</Text>
       </Text>
       <View style={{ marginVertical: 48 }}>
-        <TouchableOpacity style={styles.container__addList}>
+        <TouchableOpacity style={styles.addList}>
           <AntDesign name="plus" size={16} color={colors.blue} />
         </TouchableOpacity>
-        <Text style={styles.container__add}>Add List</Text>
+        <Text style={styles.add}>Add List</Text>
+      </View>
+      <View style={{ height: 275, paddingLeft: 12 }}>
+        <FlatList
+          data={todoList}
+          keyExtractor={(item) => item.name}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => <TodoList list={item} />}
+        />
       </View>
     </View>
   );
@@ -33,23 +50,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     // marginTop: Platform.OS === "android" ? 25 : 0,
   },
-  container__text: {
+  text: {
     fontWeight: "800",
     color: colors.black,
     fontSize: 38,
   },
-  container__blue: {
+  blue: {
     fontWeight: "400",
     color: colors.blue,
     marginLeft: 5,
   },
-  container__addList: {
+  addList: {
     borderWidth: 2,
     borderColor: colors.lightBlue,
     borderRadius: 4,
     padding: 16,
   },
-  container__add: {
+  add: {
     fontWeight: "600",
     color: colors.blue,
     fontSize: 14,
