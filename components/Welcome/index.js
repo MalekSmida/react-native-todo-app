@@ -4,16 +4,25 @@ import { StyleSheet, Text, View, Button, Animated } from "react-native";
 const styles = StyleSheet.create({
   container__text: {
     fontWeight: "bold",
-    color: "#fff",
+    color: "#0A66C2",
     fontSize: 20,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   container: {
     flex: 1,
-    backgroundColor: "#0A66C2", //000
+    backgroundColor: "#F4F5F7",
     alignItems: "center",
     justifyContent: "center",
     // marginTop: Platform.OS === "android" ? 25 : 0,
+  },
+  cercle: {
+    width: 500,
+    height: 500,
+    borderRadius: 250,
+    backgroundColor: "white",
+    position: "absolute",
+    left: -120,
+    top: -20,
   },
 });
 
@@ -22,45 +31,46 @@ const styles = StyleSheet.create({
  */
 function Welcome({ navigation }) {
   // initialize animation to 0 => opacity
-  const fadeAnimText = useRef(new Animated.Value(0)).current;
-  const fadeAnimButton = useRef(new Animated.Value(0)).current;
+  const fadeAnimFirstText = useRef(new Animated.Value(0)).current;
+  const fadeAnimSecondText = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     // run text animation when render component
-    Animated.timing(fadeAnimText, {
+    Animated.timing(fadeAnimFirstText, {
       toValue: 1,
       duration: 1000,
     }).start();
 
     // run button animation after 1s of rendering (when text animation is finished)
     setTimeout(() => {
-      Animated.timing(fadeAnimButton, {
+      Animated.timing(fadeAnimSecondText, {
         toValue: 1,
         duration: 1000,
       }).start();
-    }, 1000);
+    }, 2000);
 
     // redirect to main view
     setTimeout(() => {
       navigation.navigate("Main");
-    }, 3000);
-  }, [fadeAnimText, fadeAnimButton]);
+    }, 5000);
+  }, [fadeAnimFirstText, fadeAnimSecondText]);
 
   return (
     <View style={styles.container}>
+      <View style={styles.cercle}></View>
       <Animated.View
         style={{
-          opacity: fadeAnimText,
+          opacity: fadeAnimFirstText,
         }}
       >
-        <Text style={styles.container__text}>The Universe</Text>
+        <Text style={styles.container__text}>What is the meaning of life</Text>
       </Animated.View>
       <Animated.View
         style={{
-          opacity: fadeAnimButton,
+          opacity: fadeAnimSecondText,
         }}
       >
-        <Text style={styles.container__text}>is calling you!</Text>
+        <Text style={styles.container__text}>Wihout TODO-List!</Text>
       </Animated.View>
     </View>
   );

@@ -1,72 +1,44 @@
-import React, { useRef, useEffect } from "react";
-import { StyleSheet, Text, View, Button, Animated } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import colors from "../../utilities/Colors";
+
+/**
+ * Main component of TODO-List
+ */
+function Main({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.container__header}>
+        <Text style={styles.container__text}>
+          Todo
+          <Text style={styles.container__blue}>Lists</Text>
+        </Text>
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-  container__text: {
-    fontWeight: "bold",
-    color: "#0A66C2",
-    fontSize: 20,
-    marginBottom: 20,
-  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
     // marginTop: Platform.OS === "android" ? 25 : 0,
   },
+  container__header: {
+    flexDirection: "row",
+  },
+  container__text: {
+    fontWeight: "800",
+    color: colors.black,
+    fontSize: 38,
+  },
+  container__blue: {
+    fontWeight: "300",
+    color: colors.blue,
+    marginLeft: 5,
+  },
 });
-
-/**
- * Main component rendered when click open up button in welcome interface
- */
-function Main({ navigation }) {
-  // initialize animation to 0 => opacity
-  const fadeAnimText = useRef(new Animated.Value(0)).current;
-  const fadeAnimButton = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    // run text animation when render component
-    Animated.timing(fadeAnimText, {
-      toValue: 1,
-      duration: 1000,
-    }).start();
-
-    // run button animation after 1s of rendering (when text animation is finished)
-    setTimeout(() => {
-      Animated.timing(fadeAnimButton, {
-        toValue: 1,
-        duration: 1000,
-      }).start();
-    }, 1000);
-  }, [fadeAnimText, fadeAnimButton]);
-
-  return (
-    <View style={styles.container}>
-      <Animated.View
-        style={{
-          opacity: fadeAnimText,
-        }}
-      >
-        <Text style={styles.container__text}>What is the meaning of life!</Text>
-      </Animated.View>
-      <Animated.View
-        style={{
-          opacity: fadeAnimButton,
-          width: 180,
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      >
-        <Button
-          onPress={() => {
-            navigation.navigate("Welcome");
-          }}
-          title="Back to the future"
-        />
-      </Animated.View>
-    </View>
-  );
-}
 
 export default Main;

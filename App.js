@@ -17,16 +17,10 @@ export default function App() {
           headerShown: false, // hide header in stack navitor react navigation
         }}
       >
-        <Stack.Screen
-          name="Welcome"
-          component={Welcome}
-          // options={{ title: "Welcome" }}
-        />
+        <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Main" component={Main} />
       </Stack.Navigator>
       {/* <StatusBar style="auto" /> */}
     </NavigationContainer>
   );
 }
-
-// TODO: ScrollView,
