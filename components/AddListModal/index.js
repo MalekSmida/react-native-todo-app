@@ -11,6 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 // local files
 import colors from "../../utilities/Colors";
+import todoList from "../../utilities/data";
 
 export default function AddListModal({ onCloseModal }) {
   const defaultColors = [
@@ -27,6 +28,7 @@ export default function AddListModal({ onCloseModal }) {
     color: defaultColors[0],
   });
 
+  // list of color picker for our todo list
   const colorPicker = () =>
     defaultColors.map((item) => {
       return (
@@ -37,6 +39,15 @@ export default function AddListModal({ onCloseModal }) {
         />
       );
     });
+
+  const createTodo = () => {
+    if (todo.name !== "") {
+      todoList.push({ ...todo, todos: [] });
+      onCloseModal();
+    } else {
+      alert("Please enter todo name!");
+    }
+  };
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -52,30 +63,29 @@ export default function AddListModal({ onCloseModal }) {
       <View style={{ alignSelf: "stretch", marginHorizontal: 32 }}>
         <Text style={styles.title}>Create Todo List</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, { borderColor: todo.color }]}
           placeholder="List name ?"
           value={todo.name}
           onChangeText={(text) => setTodo({ ...todo, name: text })}
         />
-      </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignSelf: "stretch",
-          marginHorizontal: 30,
-          marginTop: 24,
-        }}
-      >
-        {colorPicker()}
-      </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 12,
+          }}
+        >
+          {colorPicker()}
+        </View>
 
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: todo.color }]}
-      >
-        <Text style={{ color: "white", fontWeight: "600" }}>Create</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: todo.color }]}
+          onPress={createTodo}
+        >
+          <Text style={{ color: "white", fontWeight: "600" }}>Create</Text>
+        </TouchableOpacity>
+      </View>
     </KeyboardAvoidingView>
   );
 }
@@ -94,7 +104,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   input: {
-    borderColor: colors.blue,
     borderRadius: 6,
     borderWidth: StyleSheet.hairlineWidth,
     paddingHorizontal: 15,
@@ -108,12 +117,10 @@ const styles = StyleSheet.create({
     marginTop: 24,
     alignItems: "center",
     justifyContent: "center",
-    alignSelf: "stretch",
-    marginHorizontal: 30,
   },
   colorPicker: {
-    height: 37,
-    width: 37,
+    height: 35,
+    width: 35,
     borderRadius: 6,
   },
 });
