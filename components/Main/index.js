@@ -12,7 +12,7 @@ import { AntDesign } from "@expo/vector-icons";
 // local files
 import colors from "../../utilities/Colors";
 import todoList from "../../utilities/data";
-import TodoList from "../TodoList";
+import { TodoList, AddListModal } from "../";
 
 /**
  * Main component of TODO-List
@@ -29,9 +29,7 @@ function Main({ navigation }) {
         visible={modalVisible}
         onRequestClose={handleModal}
       >
-        <View>
-          <Text>Hello!</Text>
-        </View>
+        <AddListModal onCloseModal={handleModal} />
       </Modal>
 
       <Text style={styles.text}>
