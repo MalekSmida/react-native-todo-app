@@ -51,7 +51,7 @@ export default function AddListModal({ onCloseModal }) {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : null}
+      // behavior={Platform.OS === "ios" ? "padding" : null}
     >
       <TouchableOpacity
         style={{ position: "absolute", top: 40, right: 30 }}

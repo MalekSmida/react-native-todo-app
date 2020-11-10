@@ -1,6 +1,6 @@
 const todoList = [
   {
-    name: " first todo list",
+    name: "first todo list",
     color: "#24A6D9",
     todos: [
       {
@@ -18,7 +18,7 @@ const todoList = [
     ],
   },
   {
-    name: " second todo list",
+    name: "second todo list",
     color: "#8022D9",
     todos: [
       {
@@ -36,7 +36,7 @@ const todoList = [
     ],
   },
   {
-    name: " third todo list",
+    name: "third todo list",
     color: "#5958D9",
     todos: [
       {
@@ -49,6 +49,22 @@ const todoList = [
       },
       {
         title: "todo 3",
+        completed: false,
+      },
+      {
+        title: "todo 4",
+        completed: true,
+      },
+      {
+        title: "todo 5",
+        completed: false,
+      },
+      {
+        title: "todo 6",
+        completed: true,
+      },
+      {
+        title: "todo 7",
         completed: false,
       },
     ],
