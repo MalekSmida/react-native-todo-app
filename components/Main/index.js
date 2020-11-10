@@ -21,6 +21,7 @@ function Main({ navigation }) {
   // Modal visibility
   const [modalVisible, setModalVisible] = useState(false);
   const handleModal = () => setModalVisible(!modalVisible);
+
   return (
     <View style={styles.container}>
       <Modal

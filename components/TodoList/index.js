@@ -1,8 +1,9 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
 
 // local files
 import colors from "../../utilities/Colors";
+import TodoModal from "../TodoModal";
 
 /**
  * present each todoList displayed in main interface
@@ -14,22 +15,39 @@ function TodoList({ list }) {
   const remainingCount = list.todos.filter((item) => !item.completed).length;
   const completedCount = list.todos.length - remainingCount;
 
-  return (
-    <View style={[styles.listContainer, { backgroundColor: list.color }]}>
-      <Text style={styles.title} numberOfLines={1}>
-        {list.name}
-      </Text>
+  // Modal visibility
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleModal = () => setModalVisible(!modalVisible);
 
-      <View>
-        <View style={{ alignItems: "center" }}>
-          <Text style={styles.count}>{remainingCount}</Text>
-          <Text style={styles.subTitle}>Remaining</Text>
+  return (
+    <View>
+      <Modal
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={handleModal}
+      >
+        <TodoModal onCloseModal={handleModal} list={list} />
+      </Modal>
+
+      <TouchableOpacity
+        style={[styles.listContainer, { backgroundColor: list.color }]}
+        onPress={handleModal}
+      >
+        <Text style={styles.title} numberOfLines={1}>
+          {list.name}
+        </Text>
+
+        <View>
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.count}>{remainingCount}</Text>
+            <Text style={styles.subTitle}>Remaining</Text>
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.count}>{completedCount}</Text>
+            <Text style={styles.subTitle}>Completed</Text>
+          </View>
         </View>
-        <View style={{ alignItems: "center" }}>
-          <Text style={styles.count}>{completedCount}</Text>
-          <Text style={styles.subTitle}>Completed</Text>
-        </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
