@@ -41,7 +41,7 @@ function Welcome({ navigation }) {
     // redirect to main view
     setTimeout(() => {
       navigation.navigate("Main");
-    }, 3000);
+    }, 2000);
   }, [fadeAnim]);
 
   return (

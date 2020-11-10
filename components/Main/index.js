@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -27,7 +27,7 @@ function Main({ navigation }) {
         <TouchableOpacity style={styles.addList}>
           <AntDesign name="plus" size={16} color={colors.blue} />
         </TouchableOpacity>
-        <Text style={styles.add}>Add List</Text>
+        <Text style={styles.add}>New List</Text>
       </View>
       <View style={{ height: 275, paddingLeft: 12 }}>
         <FlatList
@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
   addList: {
     borderWidth: 2,
     borderColor: colors.lightBlue,
-    borderRadius: 4,
+    borderRadius: 999,
     padding: 16,
+    alignItems: "center",
   },
   add: {
     fontWeight: "600",

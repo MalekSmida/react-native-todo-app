@@ -9,7 +9,7 @@ const todoList = [
       },
       {
         title: "todo 2",
-        completed: true,
+        completed: false,
       },
       {
         title: "todo 3",
@@ -41,7 +41,7 @@ const todoList = [
     todos: [
       {
         title: "todo 1",
-        completed: false,
+        completed: true,
       },
       {
         title: "todo 2",
