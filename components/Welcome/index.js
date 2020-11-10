@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     top: -20,
   },
   logo: {
-    width: 152,
-    height: 100,
+    width: 200,
+    height: 200,
   },
 });
 
@@ -52,7 +52,10 @@ function Welcome({ navigation }) {
           opacity: fadeAnim,
         }}
       >
-        <Image style={styles.logo} source={require("../../assets/Todo.svg")} />
+        <Image
+          style={styles.logo}
+          source={{ uri: "https://img.icons8.com/clouds/452/todo-list.png" }}
+        />
       </Animated.View>
     </View>
   );

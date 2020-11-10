@@ -10,10 +10,8 @@ import colors from "../../utilities/Colors";
  * @param {Object} list => todoList object
  */
 function TodoList({ list }) {
-  // count non completed todos in todos list
-  const remainingCount = list.todos.filter((item) => !item.completed).length;
-
   // count completed todos in todos list
+  const remainingCount = list.todos.filter((item) => !item.completed).length;
   const completedCount = list.todos.length - remainingCount;
 
   return (

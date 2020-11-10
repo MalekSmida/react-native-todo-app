@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   FlatList,
+  Modal,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -17,14 +18,28 @@ import TodoList from "../TodoList";
  * Main component of TODO-List
  */
 function Main({ navigation }) {
+  // Modal visibility
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleModal = () => setModalVisible(!modalVisible);
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        // transparent={true}
+        visible={modalVisible}
+        onRequestClose={handleModal}
+      >
+        <View>
+          <Text>Hello!</Text>
+        </View>
+      </Modal>
+
       <Text style={styles.text}>
         Todo
         <Text style={styles.blue}>Lists</Text>
       </Text>
       <View style={{ marginVertical: 48 }}>
-        <TouchableOpacity style={styles.addList}>
+        <TouchableOpacity style={styles.addList} onPress={handleModal}>
           <AntDesign name="plus" size={16} color={colors.blue} />
         </TouchableOpacity>
         <Text style={styles.add}>New List</Text>
