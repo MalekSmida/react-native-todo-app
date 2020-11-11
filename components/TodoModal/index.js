@@ -8,8 +8,12 @@ import {
   FlatList,
   TextInput,
   Keyboard,
+  Animated,
 } from "react-native";
+
+// node modules
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Swipeable } from "react-native-gesture-handler";
 
 // local files
 import colors from "../../utilities/Colors";
@@ -48,6 +52,15 @@ export default function TodoModal({ onCloseModal, list, updateList }) {
     }
   };
 
+  // delete item swipe animation
+  const rightActions = (dragX, index) => (
+    <TouchableOpacity>
+      <Animated.View>
+        <Animated.Text>Delete</Animated.Text>
+      </Animated.View>
+    </TouchableOpacity>
+  );
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <TouchableOpacity
@@ -69,33 +82,37 @@ export default function TodoModal({ onCloseModal, list, updateList }) {
       <View style={{ alignSelf: "stretch", flex: 3, paddingVertical: 16 }}>
         <FlatList
           data={list.todos}
-          keyExtractor={(item) => item.title}
+          keyExtractor={(item) => item.title.toString()}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 32 }}
           renderItem={({ item, index }) => (
-            <View style={styles.todoContainer}>
-              <TouchableOpacity onPress={() => toggleTodoComplete(index)}>
-                <Ionicons
-                  name={item.completed ? "ios-square" : "ios-square-outline"}
-                  size={24}
-                  color={colors.gray}
-                  style={{ width: 32 }}
-                />
-              </TouchableOpacity>
-              <Text
-                style={[
-                  styles.todo,
-                  {
-                    textDecorationLine: item.completed
-                      ? "line-through"
-                      : "none",
-                    color: item.completed ? colors.gray : colors.black,
-                  },
-                ]}
-              >
-                {item.title}
-              </Text>
-            </View>
+            <Swipeable
+              renderRightActions={(_, dragX) => rightActions(dragX, index)}
+            >
+              <View style={styles.todoContainer}>
+                <TouchableOpacity onPress={() => toggleTodoComplete(index)}>
+                  <Ionicons
+                    name={item.completed ? "ios-square" : "ios-square-outline"}
+                    size={24}
+                    color={colors.gray}
+                    style={{ width: 32 }}
+                  />
+                </TouchableOpacity>
+                <Text
+                  style={[
+                    styles.todo,
+                    {
+                      textDecorationLine: item.completed
+                        ? "line-through"
+                        : "none",
+                      color: item.completed ? colors.gray : colors.black,
+                    },
+                  ]}
+                >
+                  {item.title}
+                </Text>
+              </View>
+            </Swipeable>
           )}
         />
       </View>

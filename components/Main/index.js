@@ -12,7 +12,8 @@ import { AntDesign } from "@expo/vector-icons";
 // local files
 import colors from "../../utilities/Colors";
 import todoList from "../../store/data";
-import { TodoList, AddListModal } from "../";
+import TodoList from "../TodoList";
+import AddListModal from "../AddListModal";
 
 /**
  * Main component of TODO-List
@@ -59,7 +60,7 @@ function Main() {
       <View style={{ height: 275, paddingLeft: 12 }}>
         <FlatList
           data={todoData}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           keyboardShouldPersistTaps="always"

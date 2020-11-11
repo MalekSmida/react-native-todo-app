@@ -11,7 +11,6 @@ import { AntDesign } from "@expo/vector-icons";
 
 // local files
 import colors from "../../utilities/Colors";
-import todoList from "../../store/data";
 
 export default function AddListModal({ onCloseModal, onCreateTodo }) {
   const defaultColors = [
@@ -30,10 +29,10 @@ export default function AddListModal({ onCloseModal, onCreateTodo }) {
 
   // list of color picker for our todo list
   const colorPicker = () =>
-    defaultColors.map((item) => {
+    defaultColors.map((item, index) => {
       return (
         <TouchableOpacity
-          key={item}
+          key={index}
           onPress={() => setTodo({ ...todo, color: item })}
           style={[styles.colorPicker, { backgroundColor: item }]}
         />

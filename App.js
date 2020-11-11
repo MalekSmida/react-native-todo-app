@@ -5,7 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // local files
-import { Welcome, Main } from "./components";
+import Welcome from "./components/Welcome";
+import Main from "./components/Main";
 
 const Stack = createStackNavigator();
 
