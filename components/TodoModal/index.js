@@ -13,7 +13,6 @@ import {
 
 // node modules
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import Swipeable from "react-native-gesture-handler/Swipeable";
 
 // local files
 import colors from "../../utilities/Colors";
@@ -52,14 +51,14 @@ export default function TodoModal({ onCloseModal, list, updateList }) {
     }
   };
 
-  // delete item swipe animation
-  const rightActions = (dragX, index) => (
-    <TouchableOpacity>
-      <Animated.View>
-        <Animated.Text>Delete</Animated.Text>
-      </Animated.View>
-    </TouchableOpacity>
-  );
+  // delete item
+  const removeItem = (index) => {
+    let updatedList = list;
+    updatedList.todos = updatedList.todos.filter(
+      (item, itemIndex) => index !== itemIndex
+    );
+    updateList(updatedList);
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -86,10 +85,8 @@ export default function TodoModal({ onCloseModal, list, updateList }) {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 32 }}
           renderItem={({ item, index }) => (
-            <Swipeable
-              renderRightActions={(_, dragX) => rightActions(dragX, index)}
-            >
-              <View style={styles.todoContainer}>
+            <View style={styles.todoContainer}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TouchableOpacity onPress={() => toggleTodoComplete(index)}>
                   <Ionicons
                     name={item.completed ? "ios-square" : "ios-square-outline"}
@@ -112,7 +109,10 @@ export default function TodoModal({ onCloseModal, list, updateList }) {
                   {item.title}
                 </Text>
               </View>
-            </Swipeable>
+              <TouchableOpacity onPress={() => removeItem(index)}>
+                <AntDesign name="close" size={20} color="#d41929" />
+              </TouchableOpacity>
+            </View>
           )}
         />
       </View>
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   todo: {
     fontWeight: "700",
