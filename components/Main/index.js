@@ -17,10 +17,23 @@ import { TodoList, AddListModal } from "../";
 /**
  * Main component of TODO-List
  */
-function Main({ navigation }) {
+function Main() {
+  const [todoData, setTodoData] = useState(todoList);
+
   // Modal visibility
   const [modalVisible, setModalVisible] = useState(false);
   const handleModal = () => setModalVisible(!modalVisible);
+
+  // create new todo list
+  const createTodo = (todo) => {
+    setTodoData([...todoData, { ...todo, todos: [], id: todoData.length }]);
+    handleModal();
+  };
+
+  // update list
+  const updateList = (list) => {
+    setTodoData(todoData.map((item) => (item.id === list.id ? list : item)));
+  };
 
   return (
     <View style={styles.container}>
@@ -30,7 +43,7 @@ function Main({ navigation }) {
         visible={modalVisible}
         onRequestClose={handleModal}
       >
-        <AddListModal onCloseModal={handleModal} />
+        <AddListModal onCloseModal={handleModal} onCreateTodo={createTodo} />
       </Modal>
 
       <Text style={styles.text}>
@@ -45,11 +58,14 @@ function Main({ navigation }) {
       </View>
       <View style={{ height: 275, paddingLeft: 12 }}>
         <FlatList
-          data={todoList}
-          keyExtractor={(item) => item.name}
+          data={todoData}
+          keyExtractor={(item) => item.id}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <TodoList list={item} />}
+          keyboardShouldPersistTaps="always"
+          renderItem={({ item }) => (
+            <TodoList list={item} updateList={updateList} />
+          )}
         />
       </View>
     </View>

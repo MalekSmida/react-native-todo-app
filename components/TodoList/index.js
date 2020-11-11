@@ -9,8 +9,9 @@ import TodoModal from "../TodoModal";
  * present each todoList displayed in main interface
  *
  * @param {Object} list => todoList object
+ * @param {Object} updateList
  */
-function TodoList({ list }) {
+function TodoList({ list, updateList }) {
   // count completed todos in todos list
   const remainingCount = list.todos.filter((item) => !item.completed).length;
   const completedCount = list.todos.length - remainingCount;
@@ -26,7 +27,11 @@ function TodoList({ list }) {
         visible={modalVisible}
         onRequestClose={handleModal}
       >
-        <TodoModal onCloseModal={handleModal} list={list} />
+        <TodoModal
+          onCloseModal={handleModal}
+          list={list}
+          updateList={updateList}
+        />
       </Modal>
 
       <TouchableOpacity

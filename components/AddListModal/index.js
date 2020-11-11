@@ -13,7 +13,7 @@ import { AntDesign } from "@expo/vector-icons";
 import colors from "../../utilities/Colors";
 import todoList from "../../utilities/data";
 
-export default function AddListModal({ onCloseModal }) {
+export default function AddListModal({ onCloseModal, onCreateTodo }) {
   const defaultColors = [
     "#D88559",
     "#D85963",
@@ -42,12 +42,12 @@ export default function AddListModal({ onCloseModal }) {
 
   const createTodo = () => {
     if (todo.name !== "") {
-      todoList.push({ ...todo, todos: [] });
-      onCloseModal();
+      onCreateTodo(todo);
     } else {
       alert("Please enter todo name!");
     }
   };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}

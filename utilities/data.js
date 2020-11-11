@@ -1,5 +1,6 @@
 const todoList = [
   {
+    id: 0,
     name: "first todo list",
     color: "#24A6D9",
     todos: [
@@ -18,6 +19,7 @@ const todoList = [
     ],
   },
   {
+    id: 1,
     name: "second todo list",
     color: "#8022D9",
     todos: [
@@ -36,6 +38,7 @@ const todoList = [
     ],
   },
   {
+    id: 2,
     name: "third todo list",
     color: "#5958D9",
     todos: [

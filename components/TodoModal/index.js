@@ -7,21 +7,49 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
+  Keyboard,
 } from "react-native";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 // local files
 import colors from "../../utilities/Colors";
 
-export default function TodoModal({ onCloseModal, list }) {
-  const [todo, setTodo] = useState({
-    ...list,
-  });
-  const taskCount = todo.todos.length;
-  const completedCount = todo.todos.filter((item) => item.completed).length;
+/**
+ * display our todo list as modal
+ *
+ * @param {Object} onCloseModal => handle modal close
+ * @param {Object} list => todo list data
+ * @param {Object} updateList => update todo list
+ */
+export default function TodoModal({ onCloseModal, list, updateList }) {
+  const [todoItem, setTodoItem] = useState("");
+
+  // count tasks
+  const taskCount = list.todos.length;
+  const completedCount = list.todos.filter((item) => item.completed).length;
+
+  // toggle todo item
+  const toggleTodoComplete = (index) => {
+    let updatedList = list;
+    updatedList.todos[index].completed = !updatedList.todos[index].completed;
+    updateList(updatedList);
+  };
+
+  // add todo item
+  const addTodoItem = () => {
+    if (todoItem !== "") {
+      let updatedList = list;
+      updatedList.todos.push({ title: todoItem, completed: false });
+      updateList(updatedList);
+      Keyboard.dismiss();
+      setTodoItem("");
+    } else {
+      alert("Please enter todo name!");
+    }
+  };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <TouchableOpacity
         style={{ position: "absolute", top: 15, right: 30, zIndex: 10 }}
         onPress={onCloseModal}
@@ -29,9 +57,9 @@ export default function TodoModal({ onCloseModal, list }) {
         <AntDesign name="close" size={25} color={colors.black} />
       </TouchableOpacity>
 
-      <View style={[styles.section, { borderBottomColor: todo.color }]}>
+      <View style={[styles.section, { borderBottomColor: list.color }]}>
         <View>
-          <Text style={styles.title}>{todo.name}</Text>
+          <Text style={styles.title}>{list.name}</Text>
           <Text
             style={styles.count}
           >{`${completedCount} from ${taskCount}`}</Text>
@@ -40,13 +68,13 @@ export default function TodoModal({ onCloseModal, list }) {
 
       <View style={{ alignSelf: "stretch", flex: 2, paddingVertical: 20 }}>
         <FlatList
-          data={todo.todos}
+          data={list.todos}
           keyExtractor={(item) => item.title}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 32, paddingVertical: 64 }}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <View style={styles.todoContainer}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => toggleTodoComplete(index)}>
                 <Ionicons
                   name={item.completed ? "ios-square" : "ios-square-outline"}
                   size={24}
@@ -72,23 +100,21 @@ export default function TodoModal({ onCloseModal, list }) {
         />
       </View>
 
-      <KeyboardAvoidingView
-        style={styles.add}
-        // behavior={Platform.OS === "ios" ? "padding" : null}
-      >
+      <View style={styles.add}>
         <TextInput
-          style={[styles.input, { borderColor: todo.color }]}
+          style={[styles.input, { borderColor: list.color }]}
           placeholder="Todo name ?"
-          // value={todo.name}
-          // onChangeText={(text) => setTodo({ ...todo, name: text })}
+          value={todoItem}
+          onChangeText={(text) => setTodoItem(text)}
         />
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: todo.color }]}
+          onPress={addTodoItem}
+          style={[styles.button, { backgroundColor: list.color }]}
         >
           <AntDesign name="plus" size={25} color="white" />
         </TouchableOpacity>
-      </KeyboardAvoidingView>
-    </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
