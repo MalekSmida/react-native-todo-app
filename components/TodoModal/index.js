@@ -66,12 +66,12 @@ export default function TodoModal({ onCloseModal, list, updateList }) {
         </View>
       </View>
 
-      <View style={{ alignSelf: "stretch", flex: 2, paddingVertical: 20 }}>
+      <View style={{ alignSelf: "stretch", flex: 3, paddingVertical: 16 }}>
         <FlatList
           data={list.todos}
           keyExtractor={(item) => item.title}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 32, paddingVertical: 64 }}
+          contentContainerStyle={{ paddingHorizontal: 32 }}
           renderItem={({ item, index }) => (
             <View style={styles.todoContainer}>
               <TouchableOpacity onPress={() => toggleTodoComplete(index)}>
