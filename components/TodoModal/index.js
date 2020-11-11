@@ -13,7 +13,7 @@ import {
 
 // node modules
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { Swipeable } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
 // local files
 import colors from "../../utilities/Colors";
