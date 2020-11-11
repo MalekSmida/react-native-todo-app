@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 });
 
 /**
- * Welcome component rendered when we open the application
+ * Welcome component rendered when we open the application to show application logo for 3 seconds
  */
 function Welcome({ navigation }) {
   // initialize animation to 0 => opacity
@@ -41,7 +41,7 @@ function Welcome({ navigation }) {
     // redirect to main view
     setTimeout(() => {
       navigation.navigate("Main");
-    }, 2000);
+    }, 3000);
   }, [fadeAnim]);
 
   return (

@@ -11,7 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 // local files
 import colors from "../../utilities/Colors";
-import todoList from "../../utilities/data";
+import todoList from "../../store/data";
 import { TodoList, AddListModal } from "../";
 
 /**
