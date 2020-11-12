@@ -12,6 +12,12 @@ import { AntDesign } from "@expo/vector-icons";
 // local files
 import colors from "../../utilities/Colors";
 
+/**
+ * modal to create new todo list
+ *
+ * @param {Object} onCloseModal
+ * @param {Object} onCreateTodo
+ */
 export default function AddListModal({ onCloseModal, onCreateTodo }) {
   const defaultColors = [
     "#D88559",
