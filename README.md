@@ -1,5 +1,23 @@
-# react-native-app
+# react-native-todo-app
 
-Our first react native application ✨ <br/><br/>
+Mobile application allow user to create todo lists <br />
+Our first react native application ✨
 
-The application is still in development mode ...
+## Preview 🚀
+
+Click the image for video preview
+
+[<img src="https://i.ibb.co/Qvb2GR2/Screenshot-2020-11-12-122823.jpg">](https://res.cloudinary.com/deebb8zh7/video/upload/v1605139773/React_native_app_f2q1nq.mp4
+)
+
+## Usage
+
+if you do not have expo-cli installed, check react native docs: https://reactnative.dev/docs/environment-setup
+
+1- Download or clone the project <br />
+2- Run `$ npm install` to add the dependencies <br />
+3- Run the project `$ npm start` <br /><br />
+
+On your localhost you can run the application on: <br />
+- Browser <br /> 
+- Phone => you need expo mobile application: https://play.google.com/store/apps/details?id=host.exp.exponent
