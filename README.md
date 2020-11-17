@@ -7,7 +7,7 @@ Our first react native application ✨
 
 Click the image for video preview
 
-[<img src="https://i.ibb.co/Qvb2GR2/Screenshot-2020-11-12-122823.jpg">](https://res.cloudinary.com/deebb8zh7/video/upload/v1605139773/React_native_app_f2q1nq.mp4
+[<img src="https://i.ibb.co/Qvb2GR2/Screenshot-2020-11-12-122823.jpg">](https://res.cloudinary.com/deebb8zh7/video/upload/v1605631139/React_native_mobile_app_ftohyh.mp4
 )
 
 ## Usage
